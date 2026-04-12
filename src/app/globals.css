@@ -1,0 +1,125 @@
+:root {
+  --bg-color: #f7f9fa;
+  --text-primary: #1a1a1a;
+  --text-secondary: #71717a;
+  --primary: #000000;
+  --white: #ffffff;
+  --surface: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.5);
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.08);
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --tab-height: 80px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #0f1115;
+    --text-primary: #f4f4f5;
+    --text-secondary: #a1a1aa;
+    --primary: #ffffff;
+    --white: #18181b;
+    --surface: rgba(24, 24, 27, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.05);
+    --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.2);
+    --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.4);
+  }
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+main {
+  width: 100%;
+  max-width: 480px;
+  min-height: 100vh;
+  position: relative;
+  background-color: var(--bg-color);
+  box-shadow: var(--shadow-md);
+  overflow-x: hidden;
+  padding-bottom: var(--tab-height); /* For tab bar */
+}
+
+/* Glassmorphism utilities */
+.glass {
+  background: var(--surface);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Tab Bar */
+.tab-bar {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  max-width: 480px;
+  height: var(--tab-height);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  z-index: 1000;
+}
+
+.tab-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  color: var(--text-secondary);
+  font-size: 0.7rem;
+  font-weight: 500;
+  cursor: pointer;
+  width: 60px;
+  transition: color 0.3s ease;
+}
+
+.tab-item.active {
+  color: var(--primary);
+}
+
+.tab-item svg {
+  width: 24px;
+  height: 24px;
+  stroke: currentColor;
+  stroke-width: 2;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.tab-item.floating-btn {
+  background-color: var(--primary);
+  color: var(--bg-color);
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  transform: translateY(-10px);
+  box-shadow: var(--shadow-md);
+}
+
+.tab-item.floating-btn svg {
+  stroke: currentColor;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
