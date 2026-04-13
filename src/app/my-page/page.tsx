@@ -1,3 +1,4 @@
+import Link from 'next/link';
 export default function MyPage() {
   const categories = [
     { id: 1, name: 'Tops', items: 24, privacy: 'Privé', image: '/images/tops.png', bg: '#f1f5f9' },
@@ -40,6 +41,10 @@ export default function MyPage() {
 
 function CategoryCard({ category }: { category: any }) {
   return (
+    <Link 
+      href={`/closet/${category.name.toLowerCase()}`} 
+      style={{ textDecoration: 'none' }}
+    >
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', cursor: 'pointer' }}>
       <div style={{ position: 'relative', width: '120px', height: '120px', marginBottom: '16px' }}>
         {/* Background card 2 */}
@@ -77,5 +82,6 @@ function CategoryCard({ category }: { category: any }) {
         )}
       </div>
     </div>
+    </Link>
   );
 }
