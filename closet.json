@@ -1,0 +1,972 @@
+[
+    {
+        "category": "상의",
+        "sub_category": "하프집업 스웨트셔츠",
+        "color": "카키그레이",
+        "thickness": 3,
+        "formal_level": 2,
+        "style": "캐주얼",
+        "season": [
+            "봄",
+            "가을",
+            "겨울"
+        ],
+        "image_path": "upload_images\\cloth1.jpg"
+    },
+    {
+        "category": "아우터",
+        "sub_category": "케이블 니트 가디건",
+        "color": "그레이",
+        "thickness": 3,
+        "formal_level": 3,
+        "style": "캐주얼",
+        "season": [
+            "봄",
+            "가을",
+            "겨울"
+        ],
+        "image_path": "upload_images\\cloth10.jpg"
+    },
+    {
+        "category": "상의",
+        "sub_category": "헨리넥 반팔 티셔츠",
+        "color": "라이트 그레이",
+        "thickness": 2,
+        "formal_level": 1,
+        "style": "캐주얼",
+        "season": [
+            "봄",
+            "여름"
+        ],
+        "image_path": "upload_images\\cloth11.jpg"
+    },
+    {
+        "category": "상의",
+        "sub_category": "헨리넥 스웨트셔츠",
+        "color": "올리브 그레이",
+        "thickness": 3,
+        "formal_level": 1,
+        "style": "캐주얼",
+        "season": [
+            "봄",
+            "가을"
+        ],
+        "image_path": "upload_images\\cloth12.jpg"
+    },
+    {
+        "category": "상의",
+        "sub_category": "맨투맨 스웨트셔츠",
+        "color": "블루",
+        "thickness": 3,
+        "formal_level": 1,
+        "style": "캐주얼",
+        "season": [
+            "봄",
+            "가을",
+            "겨울"
+        ],
+        "image_path": "upload_images\\cloth13.jpg"
+    },
+    {
+        "category": "하의",
+        "sub_category": "와이드 데님",
+        "color": "블랙",
+        "thickness": 3,
+        "formal_level": 2,
+        "style": "캐주얼",
+        "season": [
+            "봄",
+            "가을",
+            "겨울"
+        ],
+        "image_path": "upload_images\\cloth14.jpg"
+    },
+    {
+        "category": "상의",
+        "sub_category": "반팔 티셔츠",
+        "color": "화이트",
+        "thickness": 1,
+        "formal_level": 1,
+        "style": "캐주얼",
+        "season": [
+            "봄",
+            "여름"
+        ],
+        "image_path": "upload_images\\cloth15.jpg"
+    },
+    {
+        "category": "하의",
+        "sub_category": "와이드 데님 반바지",
+        "color": "빈티지 워싱 중청",
+        "thickness": 2,
+        "formal_level": 1,
+        "style": "캐주얼",
+        "season": [
+            "봄",
+            "여름"
+        ],
+        "image_path": "upload_images\\cloth15.jpg"
+    },
+    {
+        "category": "상의",
+        "sub_category": "반팔 티셔츠",
+        "color": "화이트",
+        "thickness": 1,
+        "formal_level": 1,
+        "style": "캐주얼",
+        "season": [
+            "봄",
+            "여름"
+        ],
+        "image_path": "upload_images\\cloth16.jpg"
+    },
+    {
+        "category": "하의",
+        "sub_category": "와이드 데님 반바지",
+        "color": "연청",
+        "thickness": 2,
+        "formal_level": 2,
+        "style": "캐주얼",
+        "season": [
+            "봄",
+            "여름"
+        ],
+        "image_path": "upload_images\\cloth16.jpg"
+    },
+    {
+        "category": "하의",
+        "sub_category": "와이드 데님",
+        "color": "블랙",
+        "thickness": 3,
+        "formal_level": 2,
+        "style": "캐주얼",
+        "season": [
+            "봄",
+            "가을",
+            "겨울"
+        ],
+        "image_path": "upload_images\\cloth17.jpg"
+    },
+    {
+        "category": "하의",
+        "sub_category": "와이드 슬랙스",
+        "color": "블랙",
+        "thickness": 2,
+        "formal_level": 4,
+        "style": "포멀",
+        "season": [
+            "봄",
+            "가을",
+            "겨울"
+        ],
+        "image_path": "upload_images\\cloth18.jpg"
+    },
+    {
+        "category": "하의",
+        "sub_category": "슬랙스",
+        "color": "라이트 그레이",
+        "thickness": 2,
+        "formal_level": 4,
+        "style": "포멀",
+        "season": [
+            "봄",
+            "가을"
+        ],
+        "image_path": "upload_images\\cloth19.jpg"
+    },
+    {
+        "category": "상의",
+        "sub_category": "하프집업 스웨트셔츠",
+        "color": "블랙",
+        "thickness": 3,
+        "formal_level": 2,
+        "style": "캐주얼",
+        "season": [
+            "봄",
+            "가을",
+            "겨울"
+        ],
+        "image_path": "upload_images\\cloth2.jpg"
+    },
+    {
+        "category": "하의",
+        "sub_category": "와이드 조거 팬츠",
+        "color": "라이트 그레이",
+        "thickness": 2,
+        "formal_level": 1,
+        "style": "캐주얼",
+        "season": [
+            "봄",
+            "가을"
+        ],
+        "image_path": "upload_images\\cloth20.jpg"
+    },
+    {
+        "category": "하의",
+        "sub_category": "와이드 트라우저",
+        "color": "다크 그레이",
+        "thickness": 3,
+        "formal_level": 3,
+        "style": "미니멀",
+        "season": [
+            "봄",
+            "가을",
+            "겨울"
+        ],
+        "image_path": "upload_images\\cloth21.jpg"
+    },
+    {
+        "category": "하의",
+        "sub_category": "카고 팬츠",
+        "color": "올리브 그린",
+        "thickness": 2,
+        "formal_level": 1,
+        "style": "캐주얼",
+        "season": [
+            "봄",
+            "가을"
+        ],
+        "image_path": "upload_images\\cloth22.jpg"
+    },
+    {
+        "category": "하의",
+        "sub_category": "카고 반바지",
+        "color": "올리브 그린",
+        "thickness": 2,
+        "formal_level": 1,
+        "style": "캐주얼",
+        "season": [
+            "봄",
+            "여름"
+        ],
+        "image_path": "upload_images\\cloth23.jpg"
+    },
+    {
+        "category": "하의",
+        "sub_category": "카고 반바지",
+        "color": "블랙",
+        "thickness": 2,
+        "formal_level": 2,
+        "style": "스트릿",
+        "season": [
+            "봄",
+            "여름",
+            "가을"
+        ],
+        "image_path": "upload_images\\cloth24.jpg"
+    },
+    {
+        "category": "상의",
+        "sub_category": "긴팔 티셔츠",
+        "color": "화이트",
+        "thickness": 2,
+        "formal_level": 1,
+        "style": "캐주얼",
+        "season": [
+            "봄",
+            "가을"
+        ],
+        "image_path": "upload_images\\cloth25.jpg"
+    },
+    {
+        "category": "아우터",
+        "sub_category": "크루넥 스웨터",
+        "color": "블랙",
+        "thickness": 3,
+        "formal_level": 2,
+        "style": "캐주얼",
+        "season": [
+            "봄",
+            "가을",
+            "겨울"
+        ],
+        "image_path": "upload_images\\cloth25.jpg"
+    },
+    {
+        "category": "하의",
+        "sub_category": "와이드 치노 팬츠",
+        "color": "베이지",
+        "thickness": 3,
+        "formal_level": 3,
+        "style": "캐주얼",
+        "season": [
+            "봄",
+            "가을"
+        ],
+        "image_path": "upload_images\\cloth25.jpg"
+    },
+    {
+        "category": "아우터",
+        "sub_category": "수웨이드 블루종",
+        "color": "올리브 그린",
+        "thickness": 3,
+        "formal_level": 3,
+        "style": "캐주얼",
+        "season": [
+            "봄",
+            "가을"
+        ],
+        "image_path": "upload_images\\cloth26.jpg"
+    },
+    {
+        "category": "아우터",
+        "sub_category": "레더 재킷",
+        "color": "블랙",
+        "thickness": 4,
+        "formal_level": 3,
+        "style": "스트릿",
+        "season": [
+            "봄",
+            "가을",
+            "겨울"
+        ],
+        "image_path": "upload_images\\cloth27.jpg"
+    },
+    {
+        "category": "아우터",
+        "sub_category": "롱 체스터필드 코트",
+        "color": "블랙",
+        "thickness": 5,
+        "formal_level": 5,
+        "style": "포멀/미니멀",
+        "season": [
+            "가을",
+            "겨울"
+        ],
+        "image_path": "upload_images\\cloth28.jpg"
+    },
+    {
+        "category": "아우터",
+        "sub_category": "롱 체스터필드 코트",
+        "color": "그레이",
+        "thickness": 5,
+        "formal_level": 4,
+        "style": "포멀/클래식",
+        "season": [
+            "가을",
+            "겨울"
+        ],
+        "image_path": "upload_images\\cloth29.jpg"
+    },
+    {
+        "category": "상의",
+        "sub_category": "반팔 티셔츠",
+        "color": "화이트",
+        "thickness": 1,
+        "formal_level": 1,
+        "style": "캐주얼",
+        "season": [
+            "봄",
+            "여름",
+            "가을"
+        ],
+        "image_path": "upload_images\\cloth3.jpg"
+    },
+    {
+        "category": "하의",
+        "sub_category": "와이드 슬랙스",
+        "color": "라이트 그레이",
+        "thickness": 2,
+        "formal_level": 4,
+        "style": "포멀",
+        "season": [
+            "봄",
+            "가을",
+            "여름"
+        ],
+        "image_path": "upload_images\\cloth3.jpg"
+    },
+    {
+        "category": "아우터",
+        "sub_category": "밀리터리 집업 재킷",
+        "color": "올리브 그린",
+        "thickness": 4,
+        "formal_level": 2,
+        "style": "밀리터리/캐주얼",
+        "season": [
+            "봄",
+            "가을",
+            "겨울"
+        ],
+        "image_path": "upload_images\\cloth30.jpg"
+    },
+    {
+        "category": "아우터",
+        "sub_category": "해링턴 재킷",
+        "color": "다크브라운",
+        "thickness": 3,
+        "formal_level": 3,
+        "style": "캐주얼",
+        "season": [
+            "봄",
+            "가을"
+        ],
+        "image_path": "upload_images\\cloth31.jpg"
+    },
+    {
+        "category": "아우터",
+        "sub_category": "하링턴 재킷",
+        "color": "아이보리",
+        "thickness": 3,
+        "formal_level": 3,
+        "style": "캐주얼",
+        "season": [
+            "봄",
+            "가을"
+        ],
+        "image_path": "upload_images\\cloth32.jpg"
+    },
+    {
+        "category": "아우터",
+        "sub_category": "퀼팅 자켓",
+        "color": "블랙",
+        "thickness": 3,
+        "formal_level": 2,
+        "style": "캐주얼",
+        "season": [
+            "봄",
+            "가을",
+            "겨울"
+        ],
+        "image_path": "upload_images\\cloth33.jpg"
+    },
+    {
+        "category": "아우터",
+        "sub_category": "패딩 점퍼",
+        "color": "블랙",
+        "thickness": 5,
+        "formal_level": 2,
+        "style": "캐주얼",
+        "season": [
+            "겨울"
+        ],
+        "image_path": "upload_images\\cloth34.jpg"
+    },
+    {
+        "category": "상의",
+        "sub_category": "드레스 셔츠",
+        "color": "하늘색",
+        "thickness": 2,
+        "formal_level": 4,
+        "style": "비즈니스 캐주얼",
+        "season": [
+            "봄",
+            "여름"
+        ],
+        "image_path": "upload_images\\cloth4.jpg"
+    },
+    {
+        "category": "하의",
+        "sub_category": "슬랙스",
+        "color": "미확인(베이지 추정)",
+        "thickness": 2,
+        "formal_level": 4,
+        "style": "비즈니스 캐주얼",
+        "season": [
+            "봄",
+            "여름",
+            "가을"
+        ],
+        "image_path": "upload_images\\cloth4.jpg"
+    },
+    {
+        "category": "액세서리",
+        "sub_category": "벨트",
+        "color": "브라운",
+        "thickness": 1,
+        "formal_level": 3,
+        "style": "캐주얼",
+        "season": [
+            "봄",
+            "여름",
+            "가을"
+        ],
+        "image_path": "upload_images\\cloth4.jpg"
+    },
+    {
+        "category": "하의",
+        "sub_category": "스트레이트 치노 팬츠",
+        "color": "베이지",
+        "thickness": 2,
+        "formal_level": 3,
+        "style": "캐주얼",
+        "season": [
+            "봄",
+            "가을"
+        ],
+        "image_path": "upload_images\\cloth5.jpg"
+    },
+    {
+        "category": "상의",
+        "sub_category": "오버사이즈 반팔 티셔츠",
+        "color": "화이트",
+        "thickness": 2,
+        "formal_level": 1,
+        "style": "캐주얼",
+        "season": [
+            "봄",
+            "여름"
+        ],
+        "image_path": "upload_images\\cloth6.jpg"
+    },
+    {
+        "category": "하의",
+        "sub_category": "스트레이트 데님 팬츠",
+        "color": "연청",
+        "thickness": 3,
+        "formal_level": 2,
+        "style": "캐주얼",
+        "season": [
+            "봄",
+            "가을"
+        ],
+        "image_path": "upload_images\\cloth6.jpg"
+    },
+    {
+        "category": "상의",
+        "sub_category": "긴팔 셔츠",
+        "color": "라이트 블루",
+        "thickness": 2,
+        "formal_level": 3,
+        "style": "비즈니스 캐주얼",
+        "season": [
+            "봄",
+            "가을"
+        ],
+        "image_path": "upload_images\\cloth7.jpg"
+    },
+    {
+        "category": "하의",
+        "sub_category": "슬랙스",
+        "color": "블랙",
+        "thickness": 2,
+        "formal_level": 4,
+        "style": "비즈니스 캐주얼",
+        "season": [
+            "봄",
+            "가을",
+            "겨울"
+        ],
+        "image_path": "upload_images\\cloth7.jpg"
+    },
+    {
+        "category": "상의",
+        "sub_category": "크루넥 가디건",
+        "color": "아이보리",
+        "thickness": 3,
+        "formal_level": 3,
+        "style": "미니멀",
+        "season": [
+            "봄",
+            "가을",
+            "겨울"
+        ],
+        "image_path": "upload_images\\cloth8.jpg"
+    },
+    {
+        "category": "하의",
+        "sub_category": "와이드 슬랙스",
+        "color": "블랙",
+        "thickness": 2,
+        "formal_level": 4,
+        "style": "미니멀",
+        "season": [
+            "봄",
+            "가을",
+            "겨울"
+        ],
+        "image_path": "upload_images\\cloth8.jpg"
+    },
+    {
+        "category": "아우터",
+        "sub_category": "케이블 니트 가디건",
+        "color": "네이비",
+        "thickness": 3,
+        "formal_level": 3,
+        "style": "클래식",
+        "season": [
+            "봄",
+            "가을",
+            "겨울"
+        ],
+        "image_path": "upload_images\\cloth9.jpg"
+    },
+    {
+        "category": "상의",
+        "sub_category": "반팔 티셔츠",
+        "color": "화이트",
+        "thickness": 1,
+        "formal_level": 1,
+        "style": "캐주얼",
+        "season": [
+            "봄",
+            "여름"
+        ],
+        "image_path": "upload_images\\cloth35.jpg"
+    },
+    {
+        "category": "상의",
+        "sub_category": "반팔 티셔츠",
+        "color": "네이비",
+        "thickness": 2,
+        "formal_level": 1,
+        "style": "캐주얼",
+        "season": [
+            "봄",
+            "여름"
+        ],
+        "image_path": "upload_images\\cloth36.jpg"
+    },
+    {
+        "category": "상의",
+        "sub_category": "린넨 셔츠",
+        "color": "베이지",
+        "thickness": 2,
+        "formal_level": 3,
+        "style": "캐주얼",
+        "season": [
+            "봄",
+            "여름",
+            "가을"
+        ],
+        "image_path": "upload_images\\cloth37.jpg"
+    },
+    {
+        "category": "상의",
+        "sub_category": "루즈핏 셔츠",
+        "color": "블랙",
+        "thickness": 2,
+        "formal_level": 3,
+        "style": "캐주얼",
+        "season": [
+            "봄",
+            "가을"
+        ],
+        "image_path": "upload_images\\cloth38.jpg"
+    },
+    {
+        "category": "상의",
+        "sub_category": "긴팔 셔츠",
+        "color": "라이트 블루",
+        "thickness": 2,
+        "formal_level": 3,
+        "style": "캐주얼",
+        "season": [
+            "봄",
+            "가을"
+        ],
+        "image_path": "upload_images\\cloth39.jpg"
+    },
+    {
+        "category": "상의",
+        "sub_category": "반팔 티셔츠",
+        "color": "차콜 블랙",
+        "thickness": 2,
+        "formal_level": 1,
+        "style": "록/밴드",
+        "season": [
+            "봄",
+            "여름",
+            "가을"
+        ],
+        "image_path": "upload_images\\cloth40.jpg"
+    },
+    {
+        "category": "상의",
+        "sub_category": "헨리넥 니트 반팔",
+        "color": "네이비",
+        "thickness": 3,
+        "formal_level": 3,
+        "style": "캐주얼",
+        "season": [
+            "봄",
+            "여름",
+            "가을"
+        ],
+        "image_path": "upload_images\\cloth41.jpg"
+    },
+    {
+        "category": "상의",
+        "sub_category": "라운드넥 반팔 티셔츠",
+        "color": "화이트",
+        "thickness": 1,
+        "formal_level": 1,
+        "style": "캐주얼",
+        "season": [
+            "봄",
+            "여름"
+        ],
+        "image_path": "upload_images\\cloth41.jpg"
+    },
+    {
+        "category": "하의",
+        "sub_category": "조거 팬츠",
+        "color": "라이트그레이",
+        "thickness": 2,
+        "formal_level": 1,
+        "style": "캐주얼",
+        "season": [
+            "봄",
+            "가을"
+        ],
+        "image_path": "upload_images\\cloth41.jpg"
+    },
+    {
+        "category": "상의",
+        "sub_category": "반팔 티셔츠",
+        "color": "차콜 그레이",
+        "thickness": 2,
+        "formal_level": 1,
+        "style": "캐주얼",
+        "season": [
+            "봄",
+            "여름",
+            "가을"
+        ],
+        "image_path": "upload_images\\cloth42.jpg"
+    },
+    {
+        "category": "상의",
+        "sub_category": "긴팔 티셔츠 (레이어드)",
+        "color": "화이트",
+        "thickness": 2,
+        "formal_level": 1,
+        "style": "캐주얼",
+        "season": [
+            "봄",
+            "가을"
+        ],
+        "image_path": "upload_images\\cloth42.jpg"
+    },
+    {
+        "category": "하의",
+        "sub_category": "카고 반바지",
+        "color": "브라운",
+        "thickness": 3,
+        "formal_level": 1,
+        "style": "스트릿",
+        "season": [
+            "봄",
+            "여름",
+            "가을"
+        ],
+        "image_path": "upload_images\\cloth43.jpg"
+    },
+    {
+        "category": "하의",
+        "sub_category": "카고 데님 반바지",
+        "color": "중청(워싱)",
+        "thickness": 3,
+        "formal_level": 1,
+        "style": "스트리트",
+        "season": [
+            "봄",
+            "여름",
+            "가을"
+        ],
+        "image_path": "upload_images\\cloth44.jpg"
+    },
+    {
+        "category": "액세서리",
+        "sub_category": "체인 벨트",
+        "color": "실버",
+        "thickness": 1,
+        "formal_level": 1,
+        "style": "스트리트",
+        "season": [
+            "봄",
+            "여름",
+            "가을",
+            "겨울"
+        ],
+        "image_path": "upload_images\\cloth44.jpg"
+    },
+    {
+        "category": "액세서리",
+        "sub_category": "레더 벨트",
+        "color": "블랙",
+        "thickness": 1,
+        "formal_level": 2,
+        "style": "캐주얼",
+        "season": [
+            "봄",
+            "여름",
+            "가을",
+            "겨울"
+        ],
+        "image_path": "upload_images\\cloth44.jpg"
+    },
+    {
+        "category": "상의",
+        "sub_category": "반팔 티셔츠",
+        "color": "화이트",
+        "thickness": 1,
+        "formal_level": 1,
+        "style": "캐주얼",
+        "season": [
+            "봄",
+            "여름"
+        ],
+        "image_path": "upload_images\\cloth45.jpg"
+    },
+    {
+        "category": "하의",
+        "sub_category": "와이드 팬츠",
+        "color": "올리브 그린",
+        "thickness": 2,
+        "formal_level": 2,
+        "style": "캐주얼",
+        "season": [
+            "봄",
+            "가을"
+        ],
+        "image_path": "upload_images\\cloth45.jpg"
+    },
+    {
+        "category": "상의",
+        "sub_category": "니트 스웨터",
+        "color": "다크그린",
+        "thickness": 3,
+        "formal_level": 2,
+        "style": "캐주얼",
+        "season": [
+            "봄",
+            "가을",
+            "겨울"
+        ],
+        "image_path": "upload_images\\cloth46.jpg"
+    },
+    {
+        "category": "하의",
+        "sub_category": "와이드 슬랙스",
+        "color": "아이보리",
+        "thickness": 2,
+        "formal_level": 3,
+        "style": "미니멀",
+        "season": [
+            "봄",
+            "가을"
+        ],
+        "image_path": "upload_images\\cloth46.jpg"
+    },
+    {
+        "category": "상의",
+        "sub_category": "반팔 셔츠",
+        "color": "라이트 블루",
+        "thickness": 2,
+        "formal_level": 2,
+        "style": "캐주얼",
+        "season": [
+            "봄",
+            "여름"
+        ],
+        "image_path": "upload_images\\cloth47.jpg"
+    },
+    {
+        "category": "하의",
+        "sub_category": "와이드 팬츠",
+        "color": "블랙",
+        "thickness": 2,
+        "formal_level": 3,
+        "style": "캐주얼",
+        "season": [
+            "봄",
+            "가을"
+        ],
+        "image_path": "upload_images\\cloth47.jpg"
+    },
+    {
+        "category": "상의",
+        "sub_category": "반팔 티셔츠",
+        "color": "화이트",
+        "thickness": 1,
+        "formal_level": 1,
+        "style": "캐주얼",
+        "season": [
+            "봄",
+            "여름",
+            "가을"
+        ],
+        "image_path": "upload_images\\cloth48.jpg"
+    },
+    {
+        "category": "아우터",
+        "sub_category": "체크 셔츠",
+        "color": "그레이/블랙 체크",
+        "thickness": 2,
+        "formal_level": 2,
+        "style": "캐주얼",
+        "season": [
+            "봄",
+            "가을"
+        ],
+        "image_path": "upload_images\\cloth48.jpg"
+    },
+    {
+        "category": "하의",
+        "sub_category": "와이드 데님 팬츠",
+        "color": "중청(워싱)",
+        "thickness": 3,
+        "formal_level": 2,
+        "style": "캐주얼",
+        "season": [
+            "봄",
+            "가을",
+            "겨울"
+        ],
+        "image_path": "upload_images\\cloth48.jpg"
+    },
+    {
+        "category": "상의",
+        "sub_category": "체크 셔츠",
+        "color": "화이트/블루",
+        "thickness": 2,
+        "formal_level": 2,
+        "style": "캐주얼",
+        "season": [
+            "봄",
+            "가을"
+        ],
+        "image_path": "upload_images\\cloth49.jpg"
+    },
+    {
+        "category": "하의",
+        "sub_category": "와이드 데님",
+        "color": "dark indigo",
+        "thickness": 3,
+        "formal_level": 2,
+        "style": "캐주얼",
+        "season": [
+            "봄",
+            "가을",
+            "겨울"
+        ],
+        "image_path": "upload_images\\cloth49.jpg"
+    },
+    {
+        "category": "하의",
+        "sub_category": "반바지",
+        "color": "블랙",
+        "thickness": 2,
+        "formal_level": 2,
+        "style": "캐주얼",
+        "season": [
+            "봄",
+            "여름"
+        ],
+        "image_path": "upload_images\\cloth50.jpg"
+    },
+    {
+        "category": "하의",
+        "sub_category": "스웨트 반바지",
+        "color": "아이보리",
+        "thickness": 2,
+        "formal_level": 1,
+        "style": "캐주얼",
+        "season": [
+            "봄",
+            "여름"
+        ],
+        "image_path": "upload_images\\cloth51.jpg"
+    }
+]
