@@ -1,67 +1,199 @@
+'use client';
+
+import { useState, useEffect, useRef } from 'react';
+
 export default function Home() {
+  const [messages, setMessages] = useState<any[]>([
+    {
+      id: 1,
+      type: 'ai',
+      recommends: true,
+      title: '캐주얼',
+      content: '남성 캐주얼은 심플하고 기본적인 의류의 조합으로 완성되는 산뜻한 데일리 스타일입니다. 보편적이고 민주적인 스타일을 지향하며, 클래식한 의상의 품격과 스포츠웨어의 편안함 사이의 균형을 맞추는 것이 핵심 원칙입니다.',
+      images: ['/images/recommend.png', '/images/recommend.png', '/images/recommend.png']
+    }
+  ]);
+  const [inputText, setInputText] = useState('');
+  const [isThinking, setIsThinking] = useState(false);
+  const [suggestions, setSuggestions] = useState<string[]>([]);
+  const [showPlusMenu, setShowPlusMenu] = useState(false);
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+    }
+  }, [messages, isThinking, suggestions]);
+
+  const handleSend = (text: string) => {
+    if (!text.trim()) return;
+
+    // Add user message
+    const newMessage = { id: Date.now(), type: 'user', content: text };
+    setMessages(prev => [...prev, newMessage]);
+    setInputText('');
+    setSuggestions([]);
+
+    // Simulate AI thinking
+    setIsThinking(true);
+
+    setTimeout(() => {
+      setIsThinking(false);
+      // Show suggestions like Claude
+      setSuggestions(['다른 스타일 추천해줘', '이 코디에 어울리는 신발은?', '내일 날씨에 어울릴까?']);
+    }, 2000);
+  };
+
+  const handleSelectSuggestion = (suggestion: string) => {
+    const userMsg = { id: Date.now(), type: 'user', content: suggestion };
+    setMessages(prev => [...prev, userMsg]);
+    setSuggestions([]);
+    setIsThinking(true);
+
+    setTimeout(() => {
+      setIsThinking(false);
+      const aiResponse = {
+        id: Date.now() + 1,
+        type: 'ai',
+        content: `"${suggestion}"에 대한 답변입니다. 이 스타일은 편안하면서도 세련된 느낌을 줍니다. 특히 신발은 화이트 스니커즈를 추천드려요!`
+      };
+      setMessages(prev => [...prev, aiResponse]);
+    }, 1500);
+  };
+
   return (
-    <div style={{ padding: '20px', paddingBottom: '100px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
-      {/* Header */}
-      <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
-        <h1 style={{ fontSize: '1.2rem', fontWeight: 600 }}>AI Outfits</h1>
-        <div style={{ width: '40px', height: '40px', borderRadius: '20px', overflow: 'hidden' }}>
-          <img src="/images/upload.png" alt="Profile" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-        </div>
-      </header>
+    <div style={{ position: 'relative', height: '100%', display: 'flex', flexDirection: 'column' }}>
+      <div
+        ref={scrollRef}
+        style={{
+          flex: 1,
+          overflowY: 'auto',
+          padding: '20px',
+          paddingBottom: '180px',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '20px'
+        }}
+      >
+        {/* Header */}
+        <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
+          <h1 style={{ fontSize: '1.2rem', fontWeight: 600 }}>Mapsee</h1>
+          <div style={{ width: '40px', height: '40px', borderRadius: '20px', overflow: 'hidden' }}>
+            <img src="/images/upload.png" alt="Profile" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+          </div>
+        </header>
 
-      {/* User Bubble */}
-      <div style={{ alignSelf: 'flex-end', maxWidth: '70%' }}>
-        <div style={{ borderRadius: '16px', overflow: 'hidden', boxShadow: 'var(--shadow-sm)' }}>
-          <img src="/images/upload.png" alt="Uploaded Outfit" style={{ width: '100%', display: 'block' }} />
-        </div>
-      </div>
+        {/* Chat History */}
+        {messages.map((msg) => (
+          <div key={msg.id} style={{ alignSelf: msg.type === 'user' ? 'flex-end' : 'flex-start', maxWidth: msg.type === 'user' ? '70%' : '85%' }}>
+            {msg.type === 'user' ? (
+              <div style={{ background: '#3b82f6', color: 'white', padding: '12px 16px', borderRadius: '18px 18px 2px 18px', fontSize: '0.95rem' }}>
+                {msg.content}
+              </div>
+            ) : (
+              <div className={msg.recommends ? "glass" : "solid-bg"} style={{ padding: '16px', borderRadius: '20px', position: 'relative', border: msg.recommends ? 'none' : '1px solid var(--glass-border)' }}>
+                {msg.recommends && (
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '12px' }}>
+                    <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--text-secondary)' }}>AI 추천</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                    </svg>
+                  </div>
+                )}
+                {msg.title && <h2 style={{ fontSize: '1.4rem', fontWeight: 700, marginBottom: '8px' }}>{msg.title}</h2>}
+                <p style={{ fontSize: '0.9rem', color: msg.recommends ? 'var(--text-secondary)' : 'var(--text-primary)', lineHeight: 1.5 }}>
+                  {msg.content}
+                </p>
+                {msg.images && (
+                  <div style={{ display: 'flex', gap: '10px', overflowX: 'auto', marginTop: '16px', paddingBottom: '4px' }}>
+                    {msg.images.map((img: string, idx: number) => (
+                      <img key={idx} src={img} alt={`Rec ${idx}`} style={{ width: idx === 1 ? '130px' : '110px', height: '140px', objectFit: 'cover', borderRadius: '16px', flexShrink: 0, transform: idx === 1 ? 'scale(1.05)' : 'none', boxShadow: idx === 1 ? 'var(--shadow-sm)' : 'none' }} />
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        ))}
 
-      {/* AI Bubble */}
-      <div className="glass" style={{ alignSelf: 'flex-start', maxWidth: '85%', padding: '16px', borderRadius: '20px', position: 'relative' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '12px' }}>
-          <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--text-secondary)' }}>AI recommends</span>
+        {isThinking && (
+          <div style={{ alignSelf: 'flex-start', color: 'var(--text-secondary)', fontSize: '0.9rem', fontStyle: 'italic', display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <span className="dot-animation">AI가 생각 중...</span>
+          </div>
+        )}
+
+        {/* Action Button */}
+        <button
+          onClick={() => handleSend('새로운 코디 추천해줘')}
+          className="glass"
+          style={{ margin: '10px auto', padding: '10px 24px', borderRadius: '20px', border: '1px solid var(--glass-border)', display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer', fontWeight: 600, color: '#ffffff' }}
+        >
+          다시하기
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            <polyline points="1 4 1 10 7 10"></polyline>
+            <polyline points="23 20 23 14 17 14"></polyline>
+            <path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"></path>
           </svg>
+        </button>
+      </div>
+
+      {/* Floating UI: Suggestions & Input */}
+      <div style={{ position: 'fixed', bottom: '100px', left: '50%', transform: 'translateX(-50%)', width: 'calc(100% - 40px)', maxWidth: '440px', display: 'flex', flexDirection: 'column', gap: '10px', zIndex: 100 }}>
+
+        {/* Claude-style Suggestions */}
+        {suggestions.length > 0 && (
+          <div style={{ display: 'flex', gap: '8px', overflowX: 'auto', paddingBottom: '4px' }}>
+            {suggestions.map((s, i) => (
+              <button
+                key={i}
+                onClick={() => handleSelectSuggestion(s)}
+                style={{ background: 'white', border: '1px solid var(--glass-border)', borderRadius: '16px', padding: '8px 14px', fontSize: '0.85rem', whiteSpace: 'nowrap', cursor: 'pointer', boxShadow: 'var(--shadow-sm)' }}
+              >
+                {s}
+              </button>
+            ))}
+          </div>
+        )}
+
+        {/* Plus Menu */}
+        {showPlusMenu && (
+          <div style={{ position: 'absolute', bottom: '70px', right: '0', background: 'white', borderRadius: '16px', boxShadow: 'var(--shadow-md)', padding: '8px', display: 'flex', flexDirection: 'column', minWidth: '140px', border: '1px solid var(--glass-border)' }}>
+            <button style={{ padding: '10px', textAlign: 'left', background: 'none', border: 'none', cursor: 'pointer', fontSize: '0.9rem' }}>📷 사진 찍기</button>
+            <button style={{ padding: '10px', textAlign: 'left', background: 'none', border: 'none', cursor: 'pointer', fontSize: '0.9rem' }}>🖼️ 갤러리에서 선택</button>
+          </div>
+        )}
+
+        {/* Chat Input */}
+        <div className="solid-bg" style={{ height: '56px', borderRadius: '28px', display: 'flex', alignItems: 'center', padding: '0 8px 0 20px' }}>
+          <input
+            type="text"
+            placeholder="메시지 보내기"
+            value={inputText}
+            onChange={(e) => setInputText(e.target.value)}
+            onKeyDown={(e) => e.key === 'Enter' && handleSend(inputText)}
+            style={{ flex: 1, border: 'none', background: 'transparent', outline: 'none', color: 'var(--text-primary)', fontSize: '0.95rem' }}
+          />
+          <div
+            onClick={() => handleSend(inputText)}
+            style={{ background: 'var(--primary)', color: 'var(--icon-on-primary)', width: '32px', height: '32px', borderRadius: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginRight: '8px', cursor: 'pointer' }}
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <line x1="12" y1="19" x2="12" y2="5"></line>
+              <polyline points="5 12 12 5 19 12"></polyline>
+            </svg>
+          </div>
+          <div
+            onClick={() => setShowPlusMenu(!showPlusMenu)}
+            style={{ width: '40px', height: '40px', borderRadius: '20px', background: 'var(--plus-btn-bg)', color: 'var(--plus-btn-icon)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+          </div>
         </div>
-        <h2 style={{ fontSize: '1.4rem', fontWeight: 700, marginBottom: '8px' }}>Casual</h2>
-        <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
-          Men's casual is a discreet everyday style built on a combination of simple basic clothing. It is universal, and its main principle is democracy, that is, a balance between the severity of classic outfits and the convenience of sportswear.
-        </p>
-      </div>
-
-      <div style={{ alignSelf: 'flex-start', color: 'var(--text-secondary)' }}>
-        ...
-      </div>
-
-      {/* Horizontal Recommendation Images */}
-      <div style={{ display: 'flex', gap: '10px', overflowX: 'auto', paddingBottom: '10px' }}>
-        <img src="/images/recommend.png" alt="Recommend 1" style={{ width: '120px', height: '140px', objectFit: 'cover', borderRadius: '16px', flexShrink: 0 }} />
-        <img src="/images/recommend.png" alt="Recommend 2" style={{ width: '140px', height: '140px', objectFit: 'cover', borderRadius: '16px', flexShrink: 0, transform: 'scale(1.05)', boxShadow: 'var(--shadow-sm)' }} />
-        <img src="/images/recommend.png" alt="Recommend 3" style={{ width: '120px', height: '140px', objectFit: 'cover', borderRadius: '16px', flexShrink: 0 }} />
-      </div>
-
-      {/* Button */}
-      <button className="glass" style={{ margin: '0 auto', padding: '10px 24px', borderRadius: '20px', border: '1px solid var(--glass-border)', display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer', fontWeight: 600 }}>
-        Again
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-          <polyline points="1 4 1 10 7 10"></polyline>
-          <polyline points="23 20 23 14 17 14"></polyline>
-          <path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"></path>
-        </svg>
-      </button>
-
-      {/* Chat Input */}
-      <div className="glass" style={{ position: 'fixed', bottom: '100px', left: '50%', transform: 'translateX(-50%)', width: 'calc(100% - 40px)', maxWidth: '440px', height: '56px', borderRadius: '28px', display: 'flex', alignItems: 'center', padding: '0 8px 0 20px', justifySelf: 'center', zIndex: 10 }}>
-        <input type="text" placeholder="Send massage" style={{ flex: 1, border: 'none', background: 'transparent', outline: 'none', color: 'var(--text-primary)', fontSize: '0.95rem' }} />
-        <div style={{ background: 'var(--primary)', color: 'var(--bg-color)', width: '32px', height: '32px', borderRadius: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginRight: '10px' }}>
-           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <line x1="12" y1="19" x2="12" y2="5"></line>
-            <polyline points="5 12 12 5 19 12"></polyline>
-          </svg>
-        </div>
-        <img src="/images/upload.png" alt="Attach" style={{ width: '40px', height: '40px', borderRadius: '12px', objectFit: 'cover' }} />
       </div>
     </div>
   );
 }
+

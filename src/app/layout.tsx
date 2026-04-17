@@ -4,7 +4,7 @@ import { ReactNode } from 'react';
 import BottomNav from './BottomNav'; // 👈 새로 만든 하단바 컴포넌트를 불러옵니다.
 
 export const metadata: Metadata = {
-  title: 'AI Outfits',
+  title: 'Mapsee',
   description: 'AI-powered fashion recommendations and virtual closet',
 };
 
@@ -31,8 +31,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           </div>
 
           {/* 👈 기존의 길었던 <nav> 코드를 지우고 이렇게 한 줄로 교체합니다! */}
-          <BottomNav /> 
-          
+          <BottomNav />
+
         </main>
       </body>
     </html>
