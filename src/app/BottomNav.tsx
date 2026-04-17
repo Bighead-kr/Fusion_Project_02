@@ -20,29 +20,17 @@ export default function BottomNav() {
   const pathname = usePathname();
 
   return (
-    <nav className="tab-bar glass">
+    <nav className="tab-bar solid-bg">
       {/* 주소가 '/' 일 때만 active 추가 */}
       <Link href="/" className={`tab-item ${pathname === '/' ? 'active' : ''}`}>
         <HomeIcon />
-        Accueil
-      </Link>
-      
-      {/* 주소가 '/network' 일 때만 active 추가 (필요시 href 수정) */}
-      <Link href="/network" className={`tab-item ${pathname === '/network' ? 'active' : ''}`}>
-        <NetworkIcon />
-        Réseau
-      </Link>
-      
-      {/* 주소가 '/manuals' 일 때만 active 추가 (필요시 href 수정) */}
-      <Link href="/manuals" className={`tab-item ${pathname === '/manuals' ? 'active' : ''}`}>
-        <ManualsIcon />
-        Manuels
+        홈
       </Link>
       
       {/* 주소가 '/my-page' 일 때만 active 추가 */}
       <Link href="/my-page" className={`tab-item ${pathname === '/my-page' ? 'active' : ''}`}>
         <ProfileIcon />
-        Profil
+        마이페이지
       </Link>
     </nav>
   );
