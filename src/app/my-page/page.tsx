@@ -27,7 +27,7 @@ export default function MyPage() {
             onClick={() => setActiveCategory(null)}
             style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '5px' }}
           >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--back-btn-color)" strokeWidth="2">
               <line x1="19" y1="12" x2="5" y2="12"></line>
               <polyline points="12 19 5 12 12 5"></polyline>
             </svg>

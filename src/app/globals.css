@@ -10,6 +10,12 @@
   --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.08);
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
   --tab-height: 80px;
+  
+  /* Button Specifics */
+  --icon-on-primary: #ffffff;
+  --plus-btn-bg: #f1f5f9;
+  --plus-btn-icon: #1a1a1a;
+  --back-btn-color: #1a1a1a;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -23,6 +29,12 @@
     --glass-border: rgba(255, 255, 255, 0.05);
     --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.2);
     --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.4);
+    
+    /* Button Specifics for Dark Mode */
+    --icon-on-primary: #000000;
+    --plus-btn-bg: #ffffff;
+    --plus-btn-icon: #000000;
+    --back-btn-color: #ffffff;
   }
 }
 

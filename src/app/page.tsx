@@ -126,7 +126,7 @@ export default function Home() {
         <button
           onClick={() => handleSend('새로운 코디 추천해줘')}
           className="glass"
-          style={{ margin: '10px auto', padding: '10px 24px', borderRadius: '20px', border: '1px solid var(--glass-border)', display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer', fontWeight: 600 }}
+          style={{ margin: '10px auto', padding: '10px 24px', borderRadius: '20px', border: '1px solid var(--glass-border)', display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer', fontWeight: 600, color: '#ffffff' }}
         >
           다시하기
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -175,7 +175,7 @@ export default function Home() {
           />
           <div
             onClick={() => handleSend(inputText)}
-            style={{ background: 'var(--primary)', color: 'white', width: '32px', height: '32px', borderRadius: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginRight: '8px', cursor: 'pointer' }}
+            style={{ background: 'var(--primary)', color: 'var(--icon-on-primary)', width: '32px', height: '32px', borderRadius: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginRight: '8px', cursor: 'pointer' }}
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <line x1="12" y1="19" x2="12" y2="5"></line>
@@ -184,7 +184,7 @@ export default function Home() {
           </div>
           <div
             onClick={() => setShowPlusMenu(!showPlusMenu)}
-            style={{ width: '40px', height: '40px', borderRadius: '20px', background: '#f1f5f9', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}
+            style={{ width: '40px', height: '40px', borderRadius: '20px', background: 'var(--plus-btn-bg)', color: 'var(--plus-btn-icon)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <line x1="12" y1="5" x2="12" y2="19"></line>
