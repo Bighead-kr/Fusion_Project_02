@@ -3,7 +3,6 @@ __pycache__/
 *.zip
 *.part*
 # 12만개 데이터 파일이 100MB가 넘으면 깃허브에 안 올라가므로 제외합니다.
-reference_fashion.json
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
