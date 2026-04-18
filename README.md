@@ -20,9 +20,16 @@ source .venv/bin/activate
 
 # 3. 서버 실행
 uvicorn main_api:app --reload
+
+# 4. env 설정
+Backend에 .env 파일을 만들고 아래 키들을 설정해야 정상 작동합니다.
+WEATHER_API_KEY=API 키
+CLAUDE_API_KEY=API 키
+
 ```
 *   서버 주소: `http://localhost:8000`
 *   API 문서: `http://localhost:8000/docs`
+
 
 ### 2. 프론트엔드 서버 실행 (Frontend - Next.js)
 프론트엔드는 사용자 대화형 인터페이스 및 마이페이지를 제공합니다. 프로젝트 **루트 디렉토리**에서 다음을 실행하세요.
