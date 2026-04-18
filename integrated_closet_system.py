@@ -12,9 +12,8 @@ import matplotlib.pyplot as plt
 # 1. 설정 (API 키 및 클라이언트)
 # ==========================================
 CLAUDE_API_KEY = "YOUR_CLAUDE_API_KEY_HERE"
-
+WEATHER_API_KEY = "YOUR_WEATHER_KEY_HERE"
 client = anthropic.Anthropic(api_key=CLAUDE_API_KEY)
-
 # ==========================================
 # 🛡️ 2. [신규] 의도 분석 트리거 (패션 질문 여부 검증)
 # ==========================================
