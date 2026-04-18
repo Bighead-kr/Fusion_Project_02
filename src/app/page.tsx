@@ -15,9 +15,25 @@ export default function Home() {
   ]);
   const [inputText, setInputText] = useState('');
   const [isThinking, setIsThinking] = useState(false);
+  const [isComposing, setIsComposing] = useState(false);
   const [suggestions, setSuggestions] = useState<string[]>([]);
+  const [weather, setWeather] = useState<{ temp: number; desc: string } | null>(null);
   const [showPlusMenu, setShowPlusMenu] = useState(false);
+  
   const scrollRef = useRef<HTMLDivElement>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    // 초기 날씨 정보 로드
+    fetch('http://localhost:8000/weather')
+      .then(res => res.json())
+      .then(data => {
+        if (data.status === 'success') {
+          setWeather({ temp: data.temp, desc: data.description });
+        }
+      })
+      .catch(err => console.error('날씨 로드 실패:', err));
+  }, []);
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -25,44 +41,108 @@ export default function Home() {
     }
   }, [messages, isThinking, suggestions]);
 
-  const handleSend = (text: string) => {
+  const handleSend = async (text: string, bypassFilter = false) => {
     if (!text.trim()) return;
 
-    // Add user message
+    // 사용자 메시지 추가
     const newMessage = { id: Date.now(), type: 'user', content: text };
     setMessages(prev => [...prev, newMessage]);
     setInputText('');
     setSuggestions([]);
 
-    // Simulate AI thinking
+    // AI 생각 중 표시
     setIsThinking(true);
 
-    setTimeout(() => {
+    try {
+      // 백엔드 추천 API 호출
+      const url = `http://localhost:8000/recommend?situation=${encodeURIComponent(text)}&mood=캐주얼&bypass_filter=${bypassFilter}`;
+      const response = await fetch(url);
+      const data = await response.json();
+
       setIsThinking(false);
-      // Show suggestions like Claude
-      setSuggestions(['다른 스타일 추천해줘', '이 코디에 어울리는 신발은?', '내일 날씨에 어울릴까?']);
-    }, 2000);
+
+      if (data.status === 'success') {
+        const rec = data.recommendation;
+        const aiResponse = {
+          id: Date.now() + 1,
+          type: 'ai',
+          recommends: true,
+          title: rec.ref_name,
+          content: `${rec.ref_name} 스타일을 추천해 드려요. ${data.weather.temp}도의 날씨에 적합한 조합입니다.`,
+          images: rec.items.map((item: any) => item.image_url),
+          details: rec.items.map((item: any) => `${item.category}: ${item.color} ${item.sub_category}`)
+        };
+        setMessages(prev => [...prev, aiResponse]);
+        setSuggestions(['다른 스타일 추천해줘', '상세 정보 알려줘', '내일은 어때?']);
+      } else {
+        const errorResponse = {
+          id: Date.now() + 1,
+          type: 'ai',
+          content: data.message || '추천 결과를 가져오는데 실패했습니다.'
+        };
+        setMessages(prev => [...prev, errorResponse]);
+      }
+    } catch (error) {
+      console.error('API 호출 에러:', error);
+      setIsThinking(false);
+      setMessages(prev => [...prev, {
+        id: Date.now() + 1,
+        type: 'ai',
+        content: '서버와 통신하는 중 오류가 발생했습니다. 백엔드 서버가 실행 중인지 확인해 주세요.'
+      }]);
+    }
   };
 
   const handleSelectSuggestion = (suggestion: string) => {
-    const userMsg = { id: Date.now(), type: 'user', content: suggestion };
-    setMessages(prev => [...prev, userMsg]);
-    setSuggestions([]);
-    setIsThinking(true);
+    handleSend(suggestion, true); // UI 버튼 클릭은 필터 우회
+  };
 
-    setTimeout(() => {
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setShowPlusMenu(false);
+    setIsThinking(true);
+    setMessages(prev => [...prev, { id: Date.now(), type: 'user', content: '📷 사진 업로드 중...', isImage: true }]);
+
+    const formData = new FormData();
+    formData.append('file', file);
+
+    try {
+      const response = await fetch('http://localhost:8000/upload', {
+        method: 'POST',
+        body: formData,
+      });
+      const data = await response.json();
       setIsThinking(false);
-      const aiResponse = {
-        id: Date.now() + 1,
-        type: 'ai',
-        content: `"${suggestion}"에 대한 답변입니다. 이 스타일은 편안하면서도 세련된 느낌을 줍니다. 특히 신발은 화이트 스니커즈를 추천드려요!`
-      };
-      setMessages(prev => [...prev, aiResponse]);
-    }, 1500);
+
+      if (data.status === 'success') {
+        setMessages(prev => [...prev, {
+          id: Date.now(),
+          type: 'ai',
+          content: `✅ 옷 분석을 완료했습니다! 마이페이지에서 확인해보세요.\n\n분석 결과: ${data.item.color} ${data.item.sub_category} (${data.item.style})`,
+          image: data.item.image_url
+        }]);
+      } else {
+        setMessages(prev => [...prev, { id: Date.now(), type: 'ai', content: '❌ 사진 분석에 실패했습니다: ' + data.message }]);
+      }
+    } catch (error) {
+      console.error('Upload error:', error);
+      setIsThinking(false);
+      setMessages(prev => [...prev, { id: Date.now(), type: 'ai', content: '❌ 서버 통신 중 오류가 발생했습니다.' }]);
+    }
   };
 
   return (
     <div style={{ position: 'relative', height: '100%', display: 'flex', flexDirection: 'column' }}>
+      <input 
+        type="file" 
+        ref={fileInputRef} 
+        style={{ display: 'none' }} 
+        accept="image/*"
+        onChange={handleFileChange}
+      />
+      
       <div
         ref={scrollRef}
         style={{
@@ -101,9 +181,12 @@ export default function Home() {
                   </div>
                 )}
                 {msg.title && <h2 style={{ fontSize: '1.4rem', fontWeight: 700, marginBottom: '8px' }}>{msg.title}</h2>}
-                <p style={{ fontSize: '0.9rem', color: msg.recommends ? 'var(--text-secondary)' : 'var(--text-primary)', lineHeight: 1.5 }}>
+                <p style={{ fontSize: '0.9rem', color: msg.recommends ? 'var(--text-secondary)' : 'var(--text-primary)', lineHeight: 1.5, whiteSpace: 'pre-wrap' }}>
                   {msg.content}
                 </p>
+                {msg.image && (
+                  <img src={msg.image} alt="Uploaded" style={{ width: '100%', maxWidth: '200px', borderRadius: '12px', marginTop: '12px' }} />
+                )}
                 {msg.images && (
                   <div style={{ display: 'flex', gap: '10px', overflowX: 'auto', marginTop: '16px', paddingBottom: '4px' }}>
                     {msg.images.map((img: string, idx: number) => (
@@ -118,13 +201,13 @@ export default function Home() {
 
         {isThinking && (
           <div style={{ alignSelf: 'flex-start', color: 'var(--text-secondary)', fontSize: '0.9rem', fontStyle: 'italic', display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <span className="dot-animation">AI가 생각 중...</span>
+            <span className="dot-animation">AI가 분석 중...</span>
           </div>
         )}
 
         {/* Action Button */}
         <button
-          onClick={() => handleSend('새로운 코디 추천해줘')}
+          onClick={() => handleSend('새로운 코디 추천해줘', true)}
           className="glass"
           style={{ margin: '10px auto', padding: '10px 24px', borderRadius: '20px', border: '1px solid var(--glass-border)', display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer', fontWeight: 600, color: '#ffffff' }}
         >
@@ -158,8 +241,18 @@ export default function Home() {
         {/* Plus Menu */}
         {showPlusMenu && (
           <div style={{ position: 'absolute', bottom: '70px', right: '0', background: 'white', borderRadius: '16px', boxShadow: 'var(--shadow-md)', padding: '8px', display: 'flex', flexDirection: 'column', minWidth: '140px', border: '1px solid var(--glass-border)' }}>
-            <button style={{ padding: '10px', textAlign: 'left', background: 'none', border: 'none', cursor: 'pointer', fontSize: '0.9rem' }}>📷 사진 찍기</button>
-            <button style={{ padding: '10px', textAlign: 'left', background: 'none', border: 'none', cursor: 'pointer', fontSize: '0.9rem' }}>🖼️ 갤러리에서 선택</button>
+            <button 
+              onClick={() => fileInputRef.current?.click()}
+              style={{ padding: '10px', textAlign: 'left', background: 'none', border: 'none', cursor: 'pointer', fontSize: '0.9rem' }}
+            >
+              📷 사진 찍기 / 업로드
+            </button>
+            <button 
+              onClick={() => fileInputRef.current?.click()}
+              style={{ padding: '10px', textAlign: 'left', background: 'none', border: 'none', cursor: 'pointer', fontSize: '0.9rem' }}
+            >
+              🖼️ 갤러리에서 선택
+            </button>
           </div>
         )}
 
@@ -170,7 +263,13 @@ export default function Home() {
             placeholder="메시지 보내기"
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
-            onKeyDown={(e) => e.key === 'Enter' && handleSend(inputText)}
+            onCompositionStart={() => setIsComposing(true)}
+            onCompositionEnd={() => setIsComposing(false)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' && !isComposing) {
+                handleSend(inputText);
+              }
+            }}
             style={{ flex: 1, border: 'none', background: 'transparent', outline: 'none', color: 'var(--text-primary)', fontSize: '0.95rem' }}
           />
           <div

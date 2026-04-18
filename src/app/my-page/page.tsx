@@ -1,25 +1,50 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function MyPage() {
+  const [items, setItems] = useState<any[]>([]);
   const [activeCategory, setActiveCategory] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch('http://localhost:8000/closet')
+      .then(res => res.json())
+      .then(data => {
+        if (data.status === 'success') {
+          setItems(data.items);
+        }
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error('Failed to fetch closet:', err);
+        setLoading(false);
+      });
+  }, []);
+
+  const getCategoryData = (name: string) => {
+    const categoryItems = items.filter(item => item.category === name);
+    return {
+      name,
+      items: categoryItems.length,
+      privacy: '비공개',
+      image: categoryItems.length > 0 ? categoryItems[0].image_url : '/images/recommend.png',
+      bg: name === '상의' || name === '아우터' ? '#f1f5f9' : '#f8fafc',
+      allItems: categoryItems
+    };
+  };
 
   const categories = [
-    { id: 1, name: '상의', items: 24, privacy: '비공개', image: '/images/tops.png', bg: '#f1f5f9' },
-    { id: 2, name: '하의', items: 12, privacy: '비공개', image: '/images/recommend.png', bg: '#f8fafc' },
-    { id: 3, name: '아우터', items: 8, privacy: '비공개', image: '/images/upload.png', bg: '#f1f5f9' },
-    { id: 4, name: '신발', items: 15, privacy: '공개', image: '/images/recommend.png', bg: '#f8fafc' },
-  ];
-
-  const mockImages = [
-    '/images/tops.png', '/images/recommend.png', '/images/upload.png',
-    '/images/recommend.png', '/images/tops.png', '/images/upload.png',
-    '/images/tops.png', '/images/recommend.png', '/images/upload.png',
-    '/images/recommend.png', '/images/tops.png', '/images/upload.png'
+    getCategoryData('상의'),
+    getCategoryData('하의'),
+    getCategoryData('아우터'),
+    getCategoryData('원피스/치마'), // 통합 카테고리
   ];
 
   if (activeCategory) {
+    const categoryDetail = categories.find(c => c.name === activeCategory.name);
+    const displayItems = categoryDetail?.allItems || [];
+
     return (
       <div style={{ padding: '20px', display: 'flex', flexDirection: 'column', gap: '20px', height: '100%', overflowY: 'auto' }}>
         <header style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
@@ -33,22 +58,28 @@ export default function MyPage() {
             </svg>
           </button>
           <h1 style={{ fontSize: '1.2rem', fontWeight: 600 }}>{activeCategory.name}</h1>
-          <span style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>{activeCategory.items} 아이템</span>
+          <span style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>{displayItems.length} 아이템</span>
         </header>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '10px' }}>
-          {mockImages.map((img, idx) => (
-            <div key={idx} style={{ aspectRatio: '1/1', borderRadius: '12px', overflow: 'hidden', background: '#f1f5f9' }}>
-              <img src={img} alt={`Item ${idx}`} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-            </div>
-          ))}
-        </div>
+        {displayItems.length === 0 ? (
+          <div style={{ textAlign: 'center', padding: '100px 0', color: 'var(--text-secondary)' }}>
+            아이템이 없습니다.
+          </div>
+        ) : (
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '10px' }}>
+            {displayItems.map((item, idx) => (
+              <div key={idx} style={{ aspectRatio: '1/1', borderRadius: '12px', overflow: 'hidden', background: '#f1f5f9' }}>
+                <img src={item.image_url} alt={item.sub_category} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     );
   }
 
   return (
-    <div style={{ padding: '20px', display: 'flex', flexDirection: 'column', gap: '30px' }}>
+    <div style={{ padding: '20px', display: 'flex', flexDirection: 'column', gap: '30px', height: '100%', overflowY: 'auto' }}>
       {/* Header */}
       <header style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--text-secondary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -57,24 +88,30 @@ export default function MyPage() {
         <h1 style={{ fontSize: '1.2rem', fontWeight: 600, color: 'var(--text-secondary)' }}>My Closet</h1>
       </header>
 
-      {/* Grid Menu */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', rowGap: '40px' }}>
-        {categories.slice(0, 2).map((cat) => (
-          <CategoryCard key={cat.id} category={cat} onClick={() => setActiveCategory(cat)} />
-        ))}
-      </div>
+      {loading ? (
+        <div style={{ textAlign: 'center', padding: '50px', color: 'var(--text-secondary)' }}>로딩 중...</div>
+      ) : (
+        <>
+          {/* Grid Menu */}
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', rowGap: '40px' }}>
+            {categories.slice(0, 2).map((cat, idx) => (
+              <CategoryCard key={idx} category={cat} onClick={() => setActiveCategory(cat)} />
+            ))}
+          </div>
 
-      {/* Divider */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-        <span style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', fontWeight: 500 }}>Seasons</span>
-        <div style={{ height: '1px', background: 'var(--glass-border)', flex: 1 }}></div>
-      </div>
+          {/* Divider */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <span style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', fontWeight: 500 }}>Others</span>
+            <div style={{ height: '1px', background: 'var(--glass-border)', flex: 1 }}></div>
+          </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', rowGap: '40px' }}>
-        {categories.slice(2, 4).map((cat) => (
-          <CategoryCard key={cat.id} category={cat} onClick={() => setActiveCategory(cat)} />
-        ))}
-      </div>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', rowGap: '40px' }}>
+            {categories.slice(2, 4).map((cat, idx) => (
+              <CategoryCard key={idx} category={cat} onClick={() => setActiveCategory(cat)} />
+            ))}
+          </div>
+        </>
+      )}
     </div>
   );
 }
